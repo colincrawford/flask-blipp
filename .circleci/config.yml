@@ -39,7 +39,7 @@ jobs:
             poetry run coveralls
 
       - store_test_results:
-          path: test-results
+          path: test-reports
 
       - store_artifacts:
           path: test-reports
