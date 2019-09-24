@@ -8,6 +8,7 @@ coverage:
 
 test-ci:
 	poetry run pytest -vv \
+	--junit-xml=test-reports/pytest/junit.xml \
 	--cov=flask_blipp \
 	--cov-report \
 	html:coverage/cov_html .
