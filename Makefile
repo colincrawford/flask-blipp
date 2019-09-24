@@ -7,10 +7,7 @@ coverage:
 	poetry run pytest --cov=flask_blipp .
 
 test-ci:
-	poetry run pytest -vv --junitxml=test-results/junit.xml
-
-coverage-ci:
-	poetry run pytest \
+	poetry run pytest -vv \
 	--cov=flask_blipp \
 	--cov-report \
 	html:coverage/cov_html .
