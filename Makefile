@@ -1,4 +1,7 @@
-.PHONY: test test-ci coverage coverage-ci lint format
+.PHONY: example test test-ci coverage coverage-ci lint format
+
+example:
+	poetry run python -m examples.basic_example
 
 test:
 	poetry run pytest -vv
