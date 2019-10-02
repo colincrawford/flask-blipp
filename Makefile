@@ -17,7 +17,7 @@ test-ci:
 	html:coverage/cov_html .
 
 lint:
-	poetry run pycodestyle --config .pycodestyle.ini .
+	poetry run pycodestyle --config pycodestyle.ini .
 
 format:
 	poetry run black .
