@@ -4,6 +4,15 @@
 
 Logs out the HTTP routes for a flask app
 
+usage:
+```python
+from flask import Flask
+from flask_blipp import flask_blipp
+
+app = Flask(__name__)
+flask_blipp(app)
+```
+
 Helpful links:
 
 https://github.com/pallets/werkzeug/blob/master/src/werkzeug/routing.py#L514
