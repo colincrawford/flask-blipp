@@ -1,5 +1,7 @@
 import sys
 
+from .basic_formatter import basic_formatter
+
 
 def flask_blipp(app, stdout=sys.stdout, formatter=None, ignored_http_methods=None):
     """
@@ -25,13 +27,3 @@ def flask_blipp(app, stdout=sys.stdout, formatter=None, ignored_http_methods=Non
 
 def filter_methods(methods, ignored_methods):
     return [method for method in methods if method not in ignored_methods]
-
-
-def basic_formatter(routes):
-    output = []
-
-    for (rule, methods) in routes:
-        output.extend([f"{method} {rule}" for method in methods])
-
-    output.append("\n")
-    return "\n".join(output)
