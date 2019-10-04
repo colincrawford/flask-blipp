@@ -18,12 +18,12 @@ def flask_blipp(app, stdout=sys.stdout, formatter=None, ignored_http_methods=Non
         formatter = basic_formatter
 
     rules = [
-        (rule, filter_methods(rule.methods, ignored_methods))
+        (rule, http_methods(rule.methods, ignored_methods))
         for rule in app.url_map.iter_rules()
     ]
 
     stdout.write(formatter(rules))
 
 
-def filter_methods(methods, ignored_methods):
+def http_methods(methods, ignored_methods):
     return [method for method in methods if method not in ignored_methods]
