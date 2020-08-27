@@ -10,7 +10,7 @@ python = "^3.7"
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
 flask = "^1.1"
-black = {version = "^19.10b0", allows-prereleases = true}
+black = {version = "^20.8b1", allows-prereleases = true}
 pycodestyle = "^2.6"
 pytest-cov = "^2.10"
 coveralls = "^2.1"
