@@ -34,13 +34,13 @@ def test_version():
 
 
 def test_printing_to_stdout(app, stdout_mock):
-    flask_blipp(app, stdout=stdout_mock)
+    flask_blipp(app, output=stdout_mock)
 
     stdout_mock.write.assert_called()
 
 
 def test_printing_routes(app, stdout_mock):
-    flask_blipp(app, stdout=stdout_mock)
+    flask_blipp(app, output=stdout_mock)
     routes_output = get_mock_stdout_output(stdout_mock)
 
     routes = [rule.rule for rule in app.url_map.iter_rules()]
