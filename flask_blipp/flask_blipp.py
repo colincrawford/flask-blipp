@@ -3,7 +3,9 @@ import sys
 from .basic_formatter import basic_formatter
 
 
-def flask_blipp(app, output=sys.stdout, formatter=basic_formatter, ignored_http_methods=None):
+def flask_blipp(
+    app, output=sys.stdout, formatter=basic_formatter, ignored_http_methods=None
+):
     """
     Prints out the routes for a flask app on start up
 
