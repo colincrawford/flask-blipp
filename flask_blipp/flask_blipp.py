@@ -3,7 +3,9 @@ import sys
 from .basic_formatter import basic_formatter
 
 
-def flask_blipp(app, stdout=sys.stdout, formatter=None, ignored_http_methods=None):
+def flask_blipp(
+    app, output=sys.stdout, formatter=basic_formatter, ignored_http_methods=None
+):
     """
     Prints out the routes for a flask app on start up
 
@@ -14,15 +16,12 @@ def flask_blipp(app, stdout=sys.stdout, formatter=None, ignored_http_methods=Non
         ignored_http_methods = ["OPTIONS", "HEAD"]
     ignored_methods = set(ignored_http_methods)
 
-    if not formatter:
-        formatter = basic_formatter
-
     rules = [
         (rule, http_methods(rule.methods, ignored_methods))
         for rule in app.url_map.iter_rules()
     ]
 
-    stdout.write(formatter(rules))
+    output.write(formatter(rules))
 
 
 def http_methods(methods, ignored_methods):
