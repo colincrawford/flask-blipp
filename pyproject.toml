@@ -8,7 +8,7 @@ authors = ["colinlcrawford <ccolin84@gmail.com>"]
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.2"
+pytest = "^7.3"
 flask = "^2.2"
 black = {version = "^22.12", allows-prereleases = true}
 pycodestyle = "^2.10"
