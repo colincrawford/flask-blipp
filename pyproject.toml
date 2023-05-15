@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "flask-blipp"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["colinlcrawford <ccolin84@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.2"
-flask = "^2.2"
-black = {version = "^22.12", allows-prereleases = true}
+pytest = "^7.3"
+flask = "^2.2.3"
+black = "^23.3.0"
 pycodestyle = "^2.10"
 pytest-cov = "^4.0"
 coveralls = "^3.3"

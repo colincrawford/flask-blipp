@@ -1,62 +1,61 @@
-version: 2
+version: 2.1
+
+orbs:
+  python: circleci/python@2.1.1
 
 jobs:
-
   # Building and testing the project
   # Useful when a PR is open, for example
   build-and-test:
-
     docker:
-      - image: circleci/python:3.7
-
+      - image: circleci/python:3.9
     # The steps for our build-and-test
     steps:
       - checkout
-
+      - run:
+          name: Install Poetry
+          command: |
+            curl -sSL https://install.python-poetry.org | python3 -
+      - python/install-packages:
+            pkg-manager: poetry
       - restore_cache:
           keys: 
             - deps-{{ checksum "poetry.lock" }}
-
       - run:
           name: Install Dependencies
           command: |
             poetry install
-      
       - save_cache:
           key: deps-{{ checksum "poetry.lock" }}
           paths: 
             - /home/circleci/.cache/pypoetry/virtualenvs
-
       - run:
           name: lint
           command: |
             make lint
-
       - run:
           name: Run Pytest, report coverage
           command: |
             make test-ci
             poetry run coveralls
-
       - store_test_results:
           path: test-reports
-
       - store_artifacts:
           path: test-reports
-
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage/cov_html
           prefix: tests
 
   # This is the definition of another job, the one we use to publish the package to PyPI
   deployment:
-
     docker:
-      - image: circleci/python:3.7
-
+      - image: circleci/python:3.9
     steps:
       - checkout
-
+      - run:
+          name: Install Poetry
+          command: |
+            curl -sSL https://install.python-poetry.org | python3 -
       # Use `poetry publish` to Publish the package using username and password from CircleCI environment variables
       # Which can be configured inside CircleCI's interface
       - run:
@@ -67,16 +66,13 @@ jobs:
 # In the workflows section, we specify when we want to run the jobs defined
 workflows:
   version: 2
-
   # The build-and-test we will run EVERYTIME a piece of code changes
   build-and-test-workflow:
     jobs:
       - build-and-test
-  
   # The deployment workflow publishes the package
   deployment-workflow:
     jobs:
-
       # Runs build and test, but now just on Git tags (created from a GitHub release)
       - build-and-test:
           filters:
@@ -84,7 +80,6 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/
             branches:
               ignore: /.*/
-
       # Runs the deployment job, just with the tags as well
       - deployment:
           requires:

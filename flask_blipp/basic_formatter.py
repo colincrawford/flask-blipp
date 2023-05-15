@@ -2,7 +2,7 @@ def basic_formatter(routes):
     output = []
     output.append("\n==============  Routes  ==============")
 
-    for (rule, methods) in routes:
+    for rule, methods in routes:
         output.extend([format_route(method, rule) for method in methods])
 
     output.append("======================================\n")
